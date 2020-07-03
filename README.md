@@ -1,8 +1,9 @@
 # myapp
 
-A new Flutter project.
+## A new Flutter project.
+Genarates random name on Screen name. 
 
-## Getting Started
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
