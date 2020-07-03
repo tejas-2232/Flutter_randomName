@@ -14,9 +14,18 @@ class MyApp extends StatelessWidget {
           title: Text('Welcome to Flutter'),
         ),
         body: Center(
-          child: Text(wordPair.asPascalCase), // With this text.
+          child: Text(wordPair.asPascalCase),
         ),
       ),
     );
   }
 }
+
+//Stateless widgets are immutable, meaning that their properties can't change—all values are final.
+
+//Stateful widgets maintain state that might change during the lifetime of the widget
+
+/*. Implementing a stateful widget requires at least two classes: 1) a StatefulWidget that creates an instance of a State class.
+  The StatefulWidget object is, itself,
+  immutable and can be thrown away and regenerated
+ , but the State object persists over the lifetime of the widget. */
