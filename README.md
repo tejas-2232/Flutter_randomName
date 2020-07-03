@@ -1,7 +1,7 @@
 # myapp
 
 ## A new Flutter project.
-genarates random name
+Genarates random name on Screen name. 
 
 ### Getting Started
 
