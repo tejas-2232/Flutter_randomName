@@ -3,29 +3,69 @@ import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 
+// MyApp
 class MyApp extends StatelessWidget {
+  // build
   @override
   Widget build(BuildContext context) {
-    final wordPair = WordPair.random(); // Add this line.
     return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Text(wordPair.asPascalCase),
-        ),
+      title: 'Startup Name Generator',
+      home: RandomWords(),
+    );
+  }
+  //end build
+}
+// end MyApp
+
+//  RWS-var
+class RandomWordsState extends State<RandomWords> {
+  final _suggestions = <WordPair>[];
+  final _biggerFont = const TextStyle(fontSize: 18.0);
+  // end RWS-var
+
+  // _buildSuggestions
+  Widget _buildSuggestions() {
+    return ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: /*1*/ (context, i) {
+          if (i.isOdd) return Divider(); /*2*/
+
+          final index = i ~/ 2; /*3*/
+          if (index >= _suggestions.length) {
+            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+          }
+          return _buildRow(_suggestions[index]);
+        });
+  }
+  // #end _buildSuggestions
+
+  //  _buildRow
+  Widget _buildRow(WordPair pair) {
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
       ),
     );
   }
+  //end _buildRow
+
+  //RWS-build
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Startup Name Generator'),
+      ),
+      body: _buildSuggestions(),
+    );
+  }
+  //end RWS-build
+  //RWS-var
 }
+// #end RWS-var
 
-//Stateless widgets are immutable, meaning that their properties can't change—all values are final.
-
-//Stateful widgets maintain state that might change during the lifetime of the widget
-
-/*. Implementing a stateful widget requires at least two classes: 1) a StatefulWidget that creates an instance of a State class.
-  The StatefulWidget object is, itself,
-  immutable and can be thrown away and regenerated
- , but the State object persists over the lifetime of the widget. */
+class RandomWords extends StatefulWidget {
+  @override
+  RandomWordsState createState() => new RandomWordsState();
+}
